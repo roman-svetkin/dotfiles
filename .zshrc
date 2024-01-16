@@ -23,7 +23,7 @@ function desk() {
     cd /Users/rsvetk01/Desktop
 }
 
-function desk() {
+function desk_start() {
     cd /Users/rsvetk01/Desktop/start
 }
 
