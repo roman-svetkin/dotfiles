@@ -97,5 +97,26 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+brew install \
+  gh \
+  bat \
+  bottom \
+  jq \
+  fzf \
+  fd \
+  ripgrep \
+  tlrc \
+  mcfly \
+  procs \
+  sd \
+  broot \
+  httpie \
+  curlie \
+  hyperfine \
+  starship \
+  zsh-completions \
+  zsh-syntax-highlighting \
+  zsh-autosuggestions
+
 # Remove outdated versions from the cellar.
 brew cleanup

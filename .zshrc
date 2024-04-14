@@ -15,6 +15,46 @@ setopt HIST_IGNORE_SPACE
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME=robbyrussell
 
+# Open up zshrc file to edit it
+alias addalias='code ~/.zshrc'
+
+# Reload zshrc file to apply changes.
+# Allows you to not need to restart terminal for changes to .zshrc to be applied
+alias reload='source ~/.zshrc'
+
+alias gs='git status'
+
+alias ohmyzsh="cd ~/.oh-my-zsh"
+alias starshipconfig="code ~/.config/starship.toml"
+
+# navigate to global ssh directory
+alias sshhome="cd ~/.ssh"
+
+# edit global ssh configuration
+alias sshconfig="code ~/.ssh/config"
+
+# edit global git configuration
+alias gitconfig="code ~/.gitconfig"
+
+HISTFILE="$HOME/.zsh_history"
+# Display timestamps for each command
+HIST_STAMPS="%T %d.%m.%y"
+
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+# Ignore these commands in history
+HISTORY_IGNORE="(ls|pwd|cd)*"
+
+# Write the history file in the ':start:elapsed;command' format.
+setopt EXTENDED_HISTORY
+
+# Do not record an event starting with a space.
+setopt HIST_IGNORE_SPACE
+
+# Don't store history commands
+setopt HIST_NO_STORE
+
 function elk() {
     cd /Users/rsvetk01/Desktop/start/ELK_Kafka
 }
@@ -23,7 +63,7 @@ function desk() {
     cd /Users/rsvetk01/Desktop
 }
 
-function desk_start() {
+function desk() {
     cd /Users/rsvetk01/Desktop/start
 }
 
@@ -87,8 +127,8 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions docker git colored-man-pages)
-
+plugins=(docker git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -145,26 +185,33 @@ setopt PROMPT_SUBST ; PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 autoload -U colors && colors
 
 export PATH="/usr/local/opt/python@3.11/bin:$PATH"
-# export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/rsvetk01/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rsvetk01/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/rsvetk01/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rsvetk01/google-cloud-sdk/completion.zsh.inc'; fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+  if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
+  
+eval "$(starship init zsh)"
