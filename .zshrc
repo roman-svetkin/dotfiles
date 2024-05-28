@@ -3,7 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
+export PATH="$(brew --prefix)/opt/python3/libexec/bin:$PATH"
 setopt HIST_IGNORE_SPACE
 
 # bindkey -M main '\e[A' history-beginning-search-backward
@@ -162,7 +162,7 @@ if [ -f `which powerline-daemon` ]; then
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
-  . /opt/homebrew/lib/python3.11/site-packages/powerline/bindings/bash/powerline.sh
+  . /opt/homebrew/lib/python3.12/site-packages/powerline/bindings/bash/powerline.sh
 fi
 
 # PROMPT="%n@%m $(ipconfig getifaddr en0) %~ %# "
@@ -170,7 +170,7 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export JAVA_HOME=$(/usr/libexec/java_home -v11)
-export PATH="/usr/local/opt/python@3.11/bin:$PATH"
+export PATH="/usr/local/opt/python@3.12/bin:$PATH"
 [[ -s $(brew --prefix)/share/autojump/autojump.zsh ]] && . $(brew --prefix)/share/autojump/autojump.zsh
 
 autoload -Uz vcs_info
@@ -184,7 +184,7 @@ source ~/.git-prompt.sh
 setopt PROMPT_SUBST ; PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 autoload -U colors && colors
 
-export PATH="/usr/local/opt/python@3.11/bin:$PATH"
+export PATH="/usr/local/opt/python@3.12/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/rsvetk01/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rsvetk01/google-cloud-sdk/path.zsh.inc'; fi
